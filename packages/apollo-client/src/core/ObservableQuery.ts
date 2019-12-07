@@ -401,6 +401,7 @@ export class ObservableQuery<
       .startGraphQLSubscription({
         query: options.document,
         variables: options.variables,
+        onReconnect: () => this.refetch(),
       })
       .subscribe({
         next: (subscriptionData: { data: TSubscriptionData }) => {

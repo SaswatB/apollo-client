@@ -164,6 +164,11 @@ export interface SubscriptionOptions<TVariables = OperationVariables> {
    * Specifies the {@link FetchPolicy} to be used for this subscription.
    */
   fetchPolicy?: FetchPolicy;
+
+  /**
+   * A callback to execute if the underlying subscription transport reconnects
+   */
+  onReconnect?: () => Promise<unknown>;
 }
 
 export type RefetchQueryDescription = Array<string | PureQueryOptions>;

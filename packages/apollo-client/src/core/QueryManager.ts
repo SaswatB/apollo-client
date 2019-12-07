@@ -948,6 +948,7 @@ export class QueryManager<TStore> {
     query,
     fetchPolicy,
     variables,
+    onReconnect,
   }: SubscriptionOptions): Observable<FetchResult<T>> {
     query = this.transform(query).document;
     variables = this.getVariables(query, variables);
@@ -955,7 +956,7 @@ export class QueryManager<TStore> {
     const makeObservable = (variables: OperationVariables) =>
       this.getObservableFromLink<T>(
         query,
-        {},
+        { onReconnect },
         variables,
         false,
       ).map(result => {
